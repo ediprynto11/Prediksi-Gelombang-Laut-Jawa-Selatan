@@ -2,24 +2,25 @@
 
 Aplikasi **prediksi kondisi gelombang laut Jawa Selatan** berbasis **Machine Learning (LSTM)** yang terintegrasi antara **Backend Python (Flask API)** dan **Aplikasi Android (Kotlin)**.
 
-Proyek ini dibuat untuk memberikan **perkiraan 72 jam ke depan** berupa tinggi gelombang, kecepatan angin dan **klasifikasi tingkat keamanan pelayaran**.
+Proyek ini dibuat untuk memberikan **perkiraan 72 jam ke depan** berupa tinggi gelombang, kecepatan angin, serta **klasifikasi tingkat keamanan pelayaran**.
 
 ---
 
 ## 🚀 Fitur Utama
 
 ### 🔹 Backend (Python + Flask)
-- Prediksi **72 jam ke depan**
+- Prediksi cuaca laut **72 jam ke depan**
 - Model **LSTM Seq2Seq**
-- Input data historis (48 jam)
-- Output:
+- Input data historis **48 jam**
+- Output prediksi:
   - 🌊 Tinggi gelombang (meter)
   - 💨 Kecepatan angin (m/s)
-- Klasifikasi keamanan:
+  - 🌧 Curah hujan (mm)
+- Klasifikasi keamanan laut:
   - ✅ Aman
   - ⚠️ Waspada
   - ❌ Berbahaya
-- REST API menggunakan Flask
+- REST API menggunakan **Flask**
 
 ### 🔹 Frontend (Android – Kotlin)
 - Aplikasi Android native
@@ -27,62 +28,74 @@ Proyek ini dibuat untuk memberikan **perkiraan 72 jam ke depan** berupa tinggi g
 - Menampilkan:
   - Prediksi cuaca laut per jam
   - Status keamanan pelayaran
-- Dibuat dengan arsitektur sederhana (Repository Pattern)
+- Arsitektur sederhana (**Repository Pattern**)
 
 ---
 
 ## 🗂 Struktur Repository
 
+```text
 Prediksi-Gelombang-Laut-Jawa-Selatan/
 │
 ├── backend-python/
-│ ├── app_predict.py # Flask API
-│ ├── prepare_and_label.py # Preprocessing & labeling data
-│ ├── train_models.py # Training model LSTM & classifier
-│ ├── requirements.txt
-│ └── README.md (opsional)
+│   ├── app_predict.py          # Flask API (Inference)
+│   ├── prepare_and_label.py    # Preprocessing & labeling data
+│   ├── train_models.py         # Training LSTM & classifier
+│   ├── requirements.txt
+│   └── README.md               # (opsional)
 │
 ├── android-app/
-│ ├── app/
-│ ├── gradle/
-│ ├── build.gradle
-│ └── settings.gradle
+│   ├── app/
+│   ├── gradle/
+│   ├── build.gradle
+│   └── settings.gradle
 │
 ├── .gitignore
 └── README.md
+🧠 Machine Learning Model
+Model utama: LSTM Seq2Seq
 
+Input: 48 jam data historis
 
----
+Output: 72 jam prediksi (hourly)
 
-## 🧠 Machine Learning Model
+🔢 Fitur Input
+wave_height_m
 
-- **Model**: LSTM Seq2Seq
-- **Input**: 48 jam data historis
-- **Output**: 72 jam prediksi
-- **Fitur input**:
-  - wave_height_m
-  - wave_period_s
-  - wind_speed_mps
-  - wind_dir_sin
-  - wind_dir_cos
-  - temp_c
-  - pressure_hpa
-  - precip_mm
-  - wave_energy
-  - wind_power
+wave_period_s
 
-- **Classifier keamanan**:
-  - Random Forest
-  - Kategori: Aman, Waspada, Berbahaya
+wind_speed_mps
 
----
+wind_dir_sin
 
-## 🔌 API Endpoint
+wind_dir_cos
 
-### `POST /predict`
+temp_c
 
-**Request Body**
-```json
+pressure_hpa
+
+precip_mm
+
+wave_energy
+
+wind_power
+
+⚠️ Klasifikasi Keamanan
+Model: Random Forest
+
+Kategori:
+
+Aman
+
+Waspada
+
+Berbahaya
+
+🔌 API Endpoint
+POST /predict
+Digunakan oleh aplikasi Android untuk mengambil prediksi cuaca laut.
+
+📥 Request Body
 {
   "data": [
     {
@@ -100,8 +113,9 @@ Prediksi-Gelombang-Laut-Jawa-Selatan/
     }
   ]
 }
-Response
+⚠️ Minimal data yang dikirim: 48 baris (48 jam)
 
+📤 Response
 {
   "status": "success",
   "safety_today": "AMAN",
@@ -119,30 +133,30 @@ Response
 cd backend-python
 pip install -r requirements.txt
 python app_predict.py
-Server berjalan di:
-http://localhost:5051
+Server akan berjalan di:
 
+http://localhost:5051
 📱 Menjalankan Aplikasi Android
 Buka folder android-app di Android Studio
 
 Ubah baseUrl di Kotlin:
+
 http://IP_SERVER:5051
-Jalankan aplikasi di emulator atau device
+Jalankan aplikasi di emulator atau device fisik
 
 🔐 Keamanan Repository
-File berikut tidak ikut ter-upload ke GitHub:
+File berikut tidak di-upload ke GitHub:
 
 Model ML (*.pkl, *.keras, *.h5)
 
 Dataset & hasil training
 
-File build Android
+File build Android (build/, .gradle/, *.apk)
 
 Semua sudah diatur melalui .gitignore.
 
-## 📌 Catatan
-Proyek ini dikembangkan untuk pembelajaran dan riset,
-dan dapat dikembangkan lebih lanjut dengan:
+📌 Catatan Pengembangan
+Proyek ini dikembangkan untuk pembelajaran dan riset, dan dapat dikembangkan lebih lanjut dengan:
 
 Integrasi data BMKG
 
@@ -150,12 +164,10 @@ Visualisasi grafik realtime
 
 Deployment ke cloud (Docker / VPS)
 
----
-
-## 👨‍💻 Author
-**Edi Priyanto**  
-Mahasiswa | IoT & AI Enthusiast<br>
+👨‍💻 Author
+Edi Priyanto
+Mahasiswa | IoT & AI Enthusiast
 📌 Fokus: Android, IoT, Machine Learning
 
-🔗 GitHub: https://github.com/ediprynto11<br>
-🔗 LinkedIn: www.linkedin.com/in/edi-priyanto-b94b02317
+🔗 GitHub: https://github.com/ediprynto11
+🔗 LinkedIn: https://www.linkedin.com/in/edi-priyanto-b94b02317
