@@ -194,10 +194,9 @@ Proyek ini dikembangkan untuk **pembelajaran dan riset**, dan masih dapat dikemb
 ---
 
 ## 👨‍💻 Author
-
-**Edi Priyanto**
-Mahasiswa | IoT & AI Enthusiast
+**Edi Priyanto**  
+Mahasiswa | IoT & AI Enthusiast<br>
 📌 Fokus: Android, IoT, Machine Learning
 
-🔗 GitHub: [https://github.com/ediprynto11](https://github.com/ediprynto11)
-🔗 LinkedIn: [https://www.linkedin.com/in/edi-priyanto-b94b02317](https://www.linkedin.com/in/edi-priyanto-b94b02317)
+🔗 GitHub: https://github.com/ediprynto11<br>
+🔗 LinkedIn: www.linkedin.com/in/edi-priyanto-b94b02317
