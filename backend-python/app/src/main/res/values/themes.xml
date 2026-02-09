@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.PerkiraanCuacaLaut" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@android:color/white</item>
+        <item name="android:windowLightStatusBar">true</item> <!-- icon hitam -->
+        <item name="android:navigationBarColor">@android:color/white</item> <!-- opsional -->
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.PerkiraanCuacaLaut" parent="Base.Theme.PerkiraanCuacaLaut" />
+</resources>
